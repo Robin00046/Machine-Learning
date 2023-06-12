@@ -6,12 +6,7 @@
 <body>
     @include('nice_admin.header')
 
-    @role('Admin')
     @include('nice_admin.sidebar.sidebar_admin')
-    @endrole
-    @role('Pimpinan')
-    @include('nice_admin.sidebar.sidebar_pimpinan')
-    @endrole
 
 
 @yield('content')
