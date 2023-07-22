@@ -17,6 +17,9 @@ use App\Http\Controllers\TrainingController;
 */
 
 // Route::get('/', [PrediksiController::class, 'index'])->name('prediksi.index');
+Route::get('/', function () {
+   return redirect()->route('login');
+});  
 
 Route::get('/dashboard', function () {
     return view('dashboard');
