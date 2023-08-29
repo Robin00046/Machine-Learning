@@ -6,11 +6,11 @@
 <main id="main" class="main">
 
     <div class="pagetitle">
-      <h1 class="h3 mb-2 text-gray-800">Daftar Prediksi</h1>
+      <h1 class="h3 mb-2 text-gray-800">Daftar User</h1>
       <nav>
         <ol class="breadcrumb">
           <li class="breadcrumb-item"><a href="{{ route('dashboard') }}">Home</a></li>
-          <li class="breadcrumb-item active">Daftar Prediksi</li>
+          <li class="breadcrumb-item active">Daftar User</li>
         </ol>
       </nav>
     </div><!-- End Page Title -->
@@ -26,10 +26,10 @@
       <!-- DataTales Example -->
       <div class="card shadow mb-4">
           <div class="card-header py-3 mb-3">
-              <h6 class="m-0 font-weight-bold text-primary">Data Prediksi</h6>
+              <h6 class="m-0 font-weight-bold text-primary">Data User</h6>
           </div>
           <div class="card-body">
-                    <a href="{{ route('user.create') }}" class="btn btn-primary btn-sm mb-2">Tambah Prediksi</a>
+                    <a href="{{ route('user.create') }}" class="btn btn-primary btn-sm mb-2">Tambah User</a>
                   <table class="table table-bordered" id="dataTable" width="100%" cellspacing="0">
                     <thead>
                       <tr>
