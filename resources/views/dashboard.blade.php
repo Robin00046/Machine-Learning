@@ -21,10 +21,13 @@
               <div class="card top-selling overflow-auto">
                 <div class="card-body">
                   <h2 class="mt-4 text-center" >
-                    Selamat Datang di Aplikasi Prediksi Penjualan
+                    Selamat Datang 
+                    {{ Auth::user()->name  }}
                   </h2>
-
-
+                  <h2 class="mt-4 text-center" >
+                    Anda login sebagai
+                    {{ Auth::user()->roles->first()->name  }}
+                  </h2>
                 </div>
 
               </div>

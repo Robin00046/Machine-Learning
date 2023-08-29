@@ -6,11 +6,11 @@
 <main id="main" class="main">
 
     <div class="pagetitle">
-      <h1 class="h3 mb-2 text-gray-800">Daftar Prediksi</h1>
+      <h1 class="h3 mb-2 text-gray-800">Laporan</h1>
       <nav>
         <ol class="breadcrumb">
           <li class="breadcrumb-item"><a href="{{ route('dashboard') }}">Home</a></li>
-          <li class="breadcrumb-item active">Daftar Prediksi</li>
+          <li class="breadcrumb-item active">Laporan</li>
         </ol>
       </nav>
     </div><!-- End Page Title -->
@@ -26,11 +26,38 @@
       <!-- DataTales Example -->
       <div class="card shadow mb-4">
           <div class="card-header py-3 mb-3">
-              <h6 class="m-0 font-weight-bold text-primary">Data Prediksi</h6>
+              <h6 class="m-0 font-weight-bold text-primary">Data Laporan</h6>
           </div>
           <div class="card-body">
-                    <a href="{{ route('prediksi.create') }}" class="btn btn-primary btn-sm mb-2">Tambah Prediksi</a>
-                  <table class="table table-bordered" id="dataTable" width="100%" cellspacing="0">
+                    <form class="row g-3 col-md-4 " action="{{ route('laporan') }}" method="get">
+                        <div class="col-md-4">
+                          <input type="date" name="tanggal_awal" id="tanggal_awal" class="form-control" placeholder="Tanggal Awal" value="{{ $tanggal_awal }}">
+                        </div>
+                        <div class="col-md-4">
+                          <input type="date" name="tanggal_akhir" id="tanggal_akhir" class="form-control" placeholder="Tanggal Akhir" value="{{ $tanggal_akhir }}">
+                        </div>
+                        <div class="col-md-4">
+                            <div class="grid gap-3">
+                                <button type="submit" class="p-2 g-col-6 btn btn-primary">Cari</button>
+                                @if (isset($tanggal_awal) && isset($tanggal_akhir))
+                                <a href="{{ route('laporan') }}"class="p-2 g-col-6 btn btn-secondary">Reset</a>
+                                @endif
+                            </div>
+                        </div>
+                       
+                    </form>
+
+                    @if (isset($tanggal_awal) && isset($tanggal_akhir))
+                    <form action="{{ route('laporan.cetak') }}" method="get">
+                        <input type="hidden" name="tanggal_awal" id="tanggal_awal"value="{{ $tanggal_awal }}">
+                        <input type="hidden" name="tanggal_akhir" id="tanggal_akhir"  value="{{ $tanggal_akhir }}">
+                      <button type="submit"  class="btn btn-primary mt-3 mb-3" formtarget="_blank"><i class="bx bx-printer"></i> Cetak</button>   </form>
+                    @else
+                    <form action="{{ route('laporan.cetak') }}" method="get">
+                      <button type="submit"  class="btn btn-primary mt-3 mb-3" formtarget="_blank"><i class="bx bx-printer"></i> Cetak</button>   </form>                       
+                    @endif
+
+                  <table class="mt-3 table table-bordered" id="dataTable" width="100%" cellspacing="0">
                     <thead>
                       <tr>
                         <th scope="col" class="text-center">#</th>

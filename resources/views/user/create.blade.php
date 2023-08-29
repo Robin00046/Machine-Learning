@@ -6,12 +6,12 @@
 <main id="main" class="main">
 
     <div class="pagetitle">
-      <h1 class="h3 mb-2 text-gray-800">Tambah Data Prediksi</h1>
+      <h1 class="h3 mb-2 text-gray-800">Tambah Data User</h1>
       <nav>
         <ol class="breadcrumb">
           <li class="breadcrumb-item"><a href="{{ route('dashboard') }}">Home</a></li>
-          <li class="breadcrumb-item active">Data Prediksi</li>
-          <li class="breadcrumb-item active">Tambah Data Prediksi</li>
+          <li class="breadcrumb-item active">Data User</li>
+          <li class="breadcrumb-item active">Tambah Data User</li>
         </ol>
       </nav>
     </div><!-- End Page Title -->
@@ -22,31 +22,39 @@
       <!-- DataTales Example -->
       <div class="card shadow mb-4">
           <div class="card-header py-3">
-              <h6 class="m-0 font-weight-bold text-primary">Tambah Prediksi</h6>
+              <h6 class="m-0 font-weight-bold text-primary">Tambah User</h6>
           </div>
           <div class="card-body">
-                    <form method="POST" class="row g-3" action="{{ route('prediksi.store') }}" >
+                    <form method="POST" class="row g-3" action="{{ route('user.store') }}" >
                       @csrf
                       <div class="col-md-12">
                         <div class="form-floating">
-                          <input type="text" name="penjualan" id="penjualan" class="form-control" placeholder="Enter Penjualan" value="{{ old('penjualan') }}">
-                          <label for="name">Modal</label>
+                          <input type="text" name="name" id="name" class="form-control" placeholder="Enter name" value="{{ old('name') }}">
+                          <label for="name">Username</label>
                           @error('name') <span
                               class="text-danger error">{{ $message }}</span>@enderror
                         </div>
                         <div class="form-floating mt-2">
-                          <input type="date" name="tanggal" id="tanggal" class="form-control" >
-                          <label for="tanggal">Tanggal</label>
-                          @error('tanggal') <span
+                          <input type="email" name="email" id="email" class="form-control" placeholder="Enter email" value="{{ old('email') }}">
+                          <label for="email">Email</label>
+                          @error('email') <span
                               class="text-danger error">{{ $message }}</span>@enderror
                         </div>
+
+                        <div class="form-floating mt-2">
+                          <input type="password" name="password" id="password" class="form-control" placeholder="Enter password" value="{{ old('password') }}">
+                          <label for="password">Password</label>
+                          @error('password') <span
+                              class="text-danger error">{{ $message }}</span>@enderror
+                        </div>
+
                       </div>
                       
                       <div class="col-md-12">
                         <div class="form-floating">
                           
                           <button class="btn btn-primary">Save</button>
-                          <a href="{{ route('prediksi.index') }}" class="btn btn-primary">Kembali</a>
+                          <a href="{{ route('user.index') }}" class="btn btn-primary">Kembali</a>
 
                         </div>
                       </div>

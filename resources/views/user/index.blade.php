@@ -29,40 +29,35 @@
               <h6 class="m-0 font-weight-bold text-primary">Data Prediksi</h6>
           </div>
           <div class="card-body">
-                    <a href="{{ route('prediksi.create') }}" class="btn btn-primary btn-sm mb-2">Tambah Prediksi</a>
+                    <a href="{{ route('user.create') }}" class="btn btn-primary btn-sm mb-2">Tambah Prediksi</a>
                   <table class="table table-bordered" id="dataTable" width="100%" cellspacing="0">
                     <thead>
                       <tr>
                         <th scope="col" class="text-center">#</th>
-                        <th scope="col" class="text-center">Modal</th>
-                        <th scope="col" class="text-center">Prediksi</th>
-                        <th scope="col" class="text-center">Harga</th>
-                        <th scope="col" class="text-center">Hasil Total</th>
-                        <th scope="col" class="text-center">Tanggal</th>
+                        <th scope="col" class="text-center">Username</th>
+                        <th scope="col" class="text-center">Email</th>
                         <th scope="col" class="text-center">Aksi</th>
                         
                       </tr>
                     </thead>
                     <tbody>
-                      @forelse ($prediksis as $item)
+                      @forelse ($user as $item)
                       <tr>
                           <th scope="row" class="text-center"><a href="#">{{ $loop->iteration }}</a></th>
-                          <td class="text-center">{{ "Rp " . number_format($item->Penjualan,0,',','.') }}</td>
-                          <td class="text-center">{{ number_format($item->Prediksi,2). " Ton"  }}</td>
-                          <td class="text-center">{{ number_format($item->Harga) }}</td>
-                          <td class="text-center">{{ "Rp " . number_format($item->HasilTotal,0,',','.')}}</td>
-                          <td class="text-center">{{ $item->tanggal}}</td>
-                          <td class="text-center">
-                              <a href="{{ route('prediksi.edit',$item->id) }}"><span class="btn btn-warning "><i class="bx bx-pencil"> </i></span></a>
-                              <form class="d-inline" action="{{ route('prediksi.destroy',$item->id) }}" method="POST" onclick="return confirm('Are you sure?')">
-                                  @method('DELETE')
-                                  @csrf
-                                  <button class="btn btn-danger border-0" >
-                                  <i class="bx bxs-trash"></i>
-                                      
-                                  </button>          
-                                 </form>
-                          </td>
+                          <td class="text-center">{{ $item->name }}</td>
+                        <td class="text-center">{{ $item->email }}</td>
+                        <td class="text-center">
+                            <a href="{{ route('user.edit',$item->id) }}"><span class="btn btn-warning "><i class="bx bx-pencil"> </i></span></a>
+                            <form class="d-inline" action="{{ route('user.destroy',$item->id) }}" method="POST" onclick="return confirm('Are you sure?')">
+                                @method('DELETE')
+                                @csrf
+                                <button class="btn btn-danger border-0" >
+                                <i class="bx bxs-trash"></i>
+                                    
+                                </button>          
+                               </form>
+                        </td>
+
                         </tr>
                       @empty
                           <tr>

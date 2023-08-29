@@ -38,5 +38,21 @@ class TrainingSeeder extends Seeder
             'penjualan' => '25000000',
             'prediksi' => '5',
         ]);
+        Training::create([
+            'penjualan' => '25000000',
+            'prediksi' => '5',
+        ]);
+        Training::create([
+            'penjualan' => '25000000',
+            'prediksi' => '5',
+        ]);
+        Training::create([
+            'penjualan' => '25000000',
+            'prediksi' => '5',
+        ]);
+        Training::create([
+            'penjualan' => '25000000',
+            'prediksi' => '5',
+        ]);
     }
 }

@@ -3,10 +3,11 @@
 namespace App\Http\Controllers;
 
 use App\Models\Prediksi;
+use App\Models\Training;
+use Illuminate\Http\Request;
 use Phpml\Regression\LeastSquares;
 use App\Http\Requests\StorePrediksiRequest;
 use App\Http\Requests\UpdatePrediksiRequest;
-use App\Models\Training;
 
 class PrediksiController extends Controller
 {
@@ -30,10 +31,15 @@ class PrediksiController extends Controller
                 'id' => $tes->id,
                 'Penjualan' => $tes->penjualan,
                 'Prediksi' => $regression->predict([$tes->penjualan]),
-                'Kuadrat' => pow($regression->predict([$tes->penjualan]),2),
-                'HasilKali' => $tes->penjualan*$regression->predict([$tes->penjualan]), 
+                'Harga' => 5000,
+                'HasilTotal' => 5000*($regression->predict([$tes->penjualan])*1000),
+                'tanggal' => $tes->tanggal,
             ];
         }
+        if (count(Prediksi::all()) == 0) {
+            $data1 = [];
+        }
+
         // dd($data1);
         return view('prediksi.index', [
         'prediksis' => $data1,
@@ -95,5 +101,89 @@ class PrediksiController extends Controller
         //
         $prediksi->delete();
         return redirect()->route('prediksi.index')->with('success', 'Data berhasil dihapus');
+    }
+
+    public function laporan(Request $request)  {
+        // dd($request->all());
+        // dd(Panen::all());
+        if (count(Prediksi::all()) == 0) {
+            $data1 = [];
+        }
+        
+        foreach (Training::all() as $data) {
+            $samples[] = [$data->penjualan];
+            $targets[] = $data->prediksi;
+        }
+    
+        $regression = new LeastSquares();
+        // dd($regression->getIntercept($samples));
+        $regression->train($samples, $targets);
+
+        if ($request->tanggal_awal && $request->tanggal_akhir) {
+            $prediksis = Prediksi::whereBetween('tanggal', [$request->tanggal_awal, $request->tanggal_akhir])->get();
+            // dd($prediksis);
+        } else {
+            $prediksis = Prediksi::all();
+        }
+        
+
+        foreach ($prediksis as $tes ) {
+            $data1[] = (object) [
+                'id' => $tes->id,
+                'Penjualan' => $tes->penjualan,
+                'Prediksi' => $regression->predict([$tes->penjualan]),
+                'Harga' => 5000,
+                'HasilTotal' => 5000*($regression->predict([$tes->penjualan])*1000),
+                'tanggal' => $tes->tanggal,
+            ];
+        }
+        // dd($data1);
+        return view('laporan.index', [
+        'prediksis' => $data1,
+        'tanggal_awal' => $request->tanggal_awal,
+        'tanggal_akhir' => $request->tanggal_akhir,
+        ]);
+
+    }
+    public function cetak_laporan(Request $request)  {
+        if (count(Prediksi::all()) == 0) {
+            $data1 = [];
+        }
+        // dd($request->all());
+        foreach (Training::all() as $data) {
+            $samples[] = [$data->penjualan];
+            $targets[] = $data->prediksi;
+        }
+    
+        $regression = new LeastSquares();
+        // dd($regression->getIntercept($samples));
+        $regression->train($samples, $targets);
+
+        if ($request->tanggal_awal && $request->tanggal_akhir) {
+            $prediksis = Prediksi::whereBetween('tanggal', [$request->tanggal_awal, $request->tanggal_akhir])->get();
+            // dd($prediksis);
+        } else {
+            $prediksis = Prediksi::all();
+        }
+        
+
+        foreach ($prediksis as $tes ) {
+            $data1[] = (object) [
+                'id' => $tes->id,
+                'Penjualan' => $tes->penjualan,
+                'Prediksi' => $regression->predict([$tes->penjualan]),
+                'Harga' => 5000,
+                'HasilTotal' => 5000*($regression->predict([$tes->penjualan])*1000),
+                'tanggal' => $tes->tanggal,
+            ];
+        }
+        // dd($data1);
+        return view('laporan.cetak', [
+        'prediksis' => $data1,
+        'tanggal_awal' => $request->tanggal_awal,
+        'tanggal_akhir' => $request->tanggal_akhir,
+        'semua' => 'Semua Data'
+        ]);
+
     }
 }

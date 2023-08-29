@@ -31,8 +31,14 @@
                       <div class="col-md-12">
                         <div class="form-floating">
                           <input type="text" name="penjualan" id="penjualan" class="form-control" value="{{ $prediksi->penjualan }}">
-                          <label for="penjualan">Penjualan</label>
+                          <label for="penjualan">Modal</label>
                           @error('penjualan') <span
+                              class="text-danger error">{{ $message }}</span>@enderror
+                        </div>
+                        <div class="form-floating mt-2">
+                          <input type="date" name="tanggal" id="tanggal" class="form-control" value="{{ $prediksi->tanggal }}">
+                          <label for="tanggal">Tanggal</label>
+                          @error('tanggal') <span
                               class="text-danger error">{{ $message }}</span>@enderror
                         </div>
                       </div>

@@ -24,6 +24,7 @@ class UpdatePrediksiRequest extends FormRequest
         return [
             //
             'penjualan' => ['required', 'numeric'],
+            'tanggal' => ['required', 'date'],
         ];
     }
 }

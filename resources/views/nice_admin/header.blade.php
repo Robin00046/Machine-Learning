@@ -2,7 +2,7 @@
  <header id="header" class="header fixed-top d-flex align-items-center">
 
     <div class="d-flex align-items-center justify-content-between">
-      <a href="index.html" class="logo d-flex align-items-center">
+      <a href="{{ route('dashboard') }}" class="logo d-flex align-items-center">
         <img src="assets/img/logo.png" alt="">
         <span class="d-none d-lg-block">Prediksi Panen Padi</span>
       </a>
@@ -30,7 +30,12 @@
 
           <ul class="dropdown-menu dropdown-menu-end dropdown-menu-arrow profile">
             
-            
+            {{-- <li>
+              <a class="dropdown-item d-flex align-items-center" href="{{ route('profile.edit') }}">
+                <i class="bi bi-person"></i>
+                <span>Profile</span>
+              </a>
+            </li> --}}
 
             <li>
                 <form method="POST" action="{{ route('logout') }}">

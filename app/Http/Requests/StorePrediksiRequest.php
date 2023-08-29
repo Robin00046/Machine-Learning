@@ -24,6 +24,7 @@ class StorePrediksiRequest extends FormRequest
         return [
             //
             'penjualan' => ['required', 'numeric'],
+            'tanggal' => ['required', 'date'],
         ];
     }
 }
