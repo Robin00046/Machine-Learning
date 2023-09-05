@@ -31,8 +31,8 @@ class PrediksiController extends Controller
                 'id' => $tes->id,
                 'Penjualan' => $tes->penjualan,
                 'Prediksi' => $regression->predict([$tes->penjualan]),
-                'Harga' => 5000,
-                'HasilTotal' => 5000*($regression->predict([$tes->penjualan])*1000),
+                'Harga' => 4500,
+                'HasilTotal' => 4500*($regression->predict([$tes->penjualan])*1000),
                 'tanggal' => $tes->tanggal,
             ];
         }
@@ -132,8 +132,8 @@ class PrediksiController extends Controller
                 'id' => $tes->id,
                 'Penjualan' => $tes->penjualan,
                 'Prediksi' => $regression->predict([$tes->penjualan]),
-                'Harga' => 5000,
-                'HasilTotal' => 5000*($regression->predict([$tes->penjualan])*1000),
+                'Harga' => 4500,
+                'HasilTotal' => 4500*($regression->predict([$tes->penjualan])*1000),
                 'tanggal' => $tes->tanggal,
             ];
         }
@@ -172,8 +172,8 @@ class PrediksiController extends Controller
                 'id' => $tes->id,
                 'Penjualan' => $tes->penjualan,
                 'Prediksi' => $regression->predict([$tes->penjualan]),
-                'Harga' => 5000,
-                'HasilTotal' => 5000*($regression->predict([$tes->penjualan])*1000),
+                'Harga' => 4500,
+                'HasilTotal' => 4500*($regression->predict([$tes->penjualan])*1000),
                 'tanggal' => $tes->tanggal,
             ];
         }
